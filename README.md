@@ -1,13 +1,10 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/o3f88yrnsg8ghdra)](https://ci.appveyor.com/project/luisrudge/configurator)
 configurator
 ============
 
-Stop writing your ConfigurationManagerWrapper!
-============
+####Stop writing your ConfigurationManagerWrapper!
 
-[![Build status](https://ci.appveyor.com/api/projects/status/o3f88yrnsg8ghdra)](https://ci.appveyor.com/project/luisrudge/configurator)
-============
-
-How to use:
+###How to use:
 
 Your app config:
 ```xml
@@ -27,6 +24,7 @@ Your app config:
 </configuration>
 ```
 
+Your code:
 ```csharp
 IConfigurator configurator = new Configurator();
 

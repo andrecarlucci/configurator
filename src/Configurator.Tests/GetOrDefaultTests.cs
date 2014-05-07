@@ -4,9 +4,7 @@ using Should;
 
 namespace Configurator.Tests
 {
-    [SetCulture("en-US")]
-    [SetUICulture("en-US")]
-    public class GetOrDefaultTests
+    public class GetOrDefaultTests : BaseTest
     {
         private IConfigurator _configurator;
 

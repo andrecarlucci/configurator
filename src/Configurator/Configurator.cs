@@ -8,13 +8,18 @@ namespace Configurator
     {
         public T Get<T>(string key, bool required = false)
         {
+            return (T) Get(typeof (T), key, required);
+        }
+
+        public object Get(Type t, string key, bool required = false)
+        {
             EnsureKeyExists(key);
             var @value = ConfigurationManager.AppSettings[key];
             if (String.IsNullOrEmpty(@value) && required)
             {
                 throw new ConfigurationValueNotFoundException(key);
             }
-            return (T) Convert.ChangeType(@value, typeof (T));
+            return Convert.ChangeType(@value, t);
         }
 
         public T GetOrDefault<T>(string key, T defaultValue = default(T))

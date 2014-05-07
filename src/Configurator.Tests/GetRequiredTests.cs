@@ -3,9 +3,7 @@ using NUnit.Framework;
 
 namespace Configurator.Tests
 {
-    [SetCulture("en-US")]
-    [SetUICulture("en-US")]
-    public class GetRequiredTests
+    public class GetRequiredTests : BaseTest
     {
         private IConfigurator _configurator;
 

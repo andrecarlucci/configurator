@@ -54,6 +54,7 @@
     <Compile Include="ConfiguratorExtensionsTests.cs" />
     <Compile Include="GetRequiredTests.cs" />
     <Compile Include="GetOrDefaultTests.cs" />
+    <Compile Include="GetArrayTests.cs" />
     <Compile Include="GetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

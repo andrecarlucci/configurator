@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Configuration;
 using System.Linq;
 
@@ -19,7 +20,22 @@ namespace Configurator
             {
                 throw new ConfigurationValueNotFoundException(key);
             }
+            if (t.IsArray)
+            {
+                return CreateArrayFromValue(t, value);
+            }
             return Convert.ChangeType(@value, t);
+        }
+
+        private static Array CreateArrayFromValue(Type t, string value)
+        {
+            var values = @value.Split(',');
+            var array = Array.CreateInstance(t.GetElementType(), values.Length);
+            for (int i = 0; i < values.Length; i++)
+            {
+                array.SetValue(Convert.ChangeType(values[i], t.GetElementType()), i);
+            }
+            return array;
         }
 
         public T GetOrDefault<T>(string key, T defaultValue = default(T))

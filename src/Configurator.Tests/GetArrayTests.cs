@@ -114,5 +114,28 @@ namespace Configurator.Tests
                 (bool[])_configurator.Get(typeof(bool[]), "test-array-bool")
             );
         }
+
+        [Test]
+        public void Should_set_default_array_separator()
+        {
+            Configurator.DefaultArraySeparator = ';';
+            _configurator = new Configurator();
+            CollectionAssert.AreEqual(
+                new[] { 9.1m, 9.2m, 9.3m },
+                _configurator.Get<decimal[]>("test-array-decimal-semicolon")
+            );
+            Configurator.DefaultArraySeparator = ',';
+        }
+
+        [Test]
+        public void Should_favor_instance_property_over_default_array_separator() {
+            Configurator.DefaultArraySeparator = '|';
+            _configurator = new Configurator {ArraySeparator = ';'};
+            CollectionAssert.AreEqual(
+                new[] { 9.1m, 9.2m, 9.3m },
+                _configurator.Get<decimal[]>("test-array-decimal-semicolon")
+            );
+            Configurator.DefaultArraySeparator = ',';
+        }
     }
 }

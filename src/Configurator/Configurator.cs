@@ -7,6 +7,14 @@ namespace Configurator
 {
     public class Configurator : IConfigurator
     {
+        public static char DefaultArraySeparator = ',';
+
+        public char ArraySeparator { get; set; }
+        public Configurator()
+        {
+            ArraySeparator = DefaultArraySeparator;
+        }
+        
         public T Get<T>(string key, bool required = false)
         {
             return (T) Get(typeof (T), key, required);
@@ -27,9 +35,9 @@ namespace Configurator
             return Convert.ChangeType(@value, t);
         }
 
-        private static Array CreateArrayFromValue(Type t, string value)
+        private Array CreateArrayFromValue(Type t, string value)
         {
-            var values = @value.Split(',');
+            var values = @value.Split(ArraySeparator);
             var array = Array.CreateInstance(t.GetElementType(), values.Length);
             for (int i = 0; i < values.Length; i++)
             {
@@ -66,5 +74,6 @@ namespace Configurator
                 throw new ConfigurationKeyNotFoundException(key);
             }
         }
+
     }
 }

@@ -6,24 +6,16 @@ namespace Configurator.Tests
 {
     public class GetOrDefaultTests : BaseTest
     {
-        private IConfigurator _configurator;
-
-        [SetUp]
-        public void Setup()
-        {
-            _configurator = new Configurator();
-        }
-
         [Test]
         public void Should_Get_Int()
         {
-            _configurator.GetOrDefault<int>("test-int").ShouldEqual(5);
+            Configurator.GetOrDefault<int>("test-int").ShouldEqual(5);
         }
 
         [Test]
         public void Should_Get_DateTime()
         {
-            _configurator
+            Configurator
                 .GetOrDefault<DateTime>("test-datetime")
                 .ShouldEqual(new DateTime(2013, 1, 1));
         }
@@ -31,7 +23,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_String()
         {
-            _configurator
+            Configurator
                 .GetOrDefault<string>("test-string")
                 .ShouldEqual("test");
         }
@@ -39,7 +31,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Decimal()
         {
-            _configurator
+            Configurator
                 .GetOrDefault<decimal>("test-decimal")
                 .ShouldEqual(9.5m);
         }
@@ -47,7 +39,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Boolean()
         {
-            _configurator
+            Configurator
                 .GetOrDefault<bool>("test-bool")
                 .ShouldEqual(true);
         }
@@ -55,7 +47,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Throw_Int()
         {
-            _configurator
+            Configurator
                 .GetOrDefault("test-empty", 0)
                 .ShouldEqual(0);
         }
@@ -63,7 +55,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Throw_DateTime()
         {
-            _configurator
+            Configurator
                 .GetOrDefault("test-empty", new DateTime(2013, 1, 1))
                 .ShouldEqual(new DateTime(2013, 1, 1));
         }
@@ -71,7 +63,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Throw_String()
         {
-            _configurator
+            Configurator
                 .GetOrDefault("test-empty", "test")
                 .ShouldEqual("test");
         }
@@ -79,7 +71,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Throw_Decimal()
         {
-            _configurator
+            Configurator
                 .GetOrDefault("test-empty", 9.5m)
                 .ShouldEqual(9.5m);
         }
@@ -87,7 +79,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Throw_Boolean()
         {
-            _configurator
+            Configurator
                 .GetOrDefault("test-empty", true)
                 .ShouldEqual(true);
         }

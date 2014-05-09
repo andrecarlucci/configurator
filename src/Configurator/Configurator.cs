@@ -23,21 +23,19 @@ namespace Configurator
         public object Get(Type t, string key, bool required = false)
         {
             EnsureKeyExists(key);
-            var @value = ConfigurationManager.AppSettings[key];
+            var value = ConfigurationManager.AppSettings[key];
             if (String.IsNullOrEmpty(@value) && required)
             {
                 throw new ConfigurationValueNotFoundException(key);
             }
-            if (t.IsArray)
-            {
-                return CreateArrayFromValue(t, value);
-            }
-            return Convert.ChangeType(@value, t);
+            return t.IsArray ? 
+                CreateArrayFromValue(t, value) : 
+                Convert.ChangeType(@value, t);
         }
 
         private Array CreateArrayFromValue(Type t, string value)
         {
-            var values = @value.Split(ArraySeparator);
+            var values = value.Split(ArraySeparator);
             var array = Array.CreateInstance(t.GetElementType(), values.Length);
             for (int i = 0; i < values.Length; i++)
             {

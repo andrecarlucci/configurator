@@ -6,18 +6,10 @@ namespace Configurator.Tests
 {
     public class ConfiguratorExtensionsTests : BaseTest
     {
-        private IConfigurator _configurator;
-
-        [SetUp]
-        public void Setup()
-        {
-            _configurator = new Configurator();
-        }
-
         [Test]
         public void Should_Map_T()
         {
-            var config = _configurator.Map<MappingTestConfig>();
+            var config = Configurator.Map<MappingTestConfig>();
             config.TestInt.ShouldEqual(5);
             config.TestDatetime.ShouldEqual(new DateTime(2013, 1, 1));
             config.TestString.ShouldEqual("test");
@@ -29,14 +21,14 @@ namespace Configurator.Tests
         [ExpectedException(typeof (ConfigurationValueNotFoundException))]
         public void Map_Should_Throw_ConfigurationValueNotFoundException_when_required_value_is_empty()
         {
-            _configurator.Map<MappingTestConfig>(true);
+            Configurator.Map<MappingTestConfig>(true);
         }
 
         [Test]
         [ExpectedException(typeof (ConfigurationKeyNotFoundException))]
         public void Map_Should_Throw_ConfigurationValueNotFoundException_when_key_is_not_found()
         {
-            _configurator.Map<KeyNotFoundConfig>(true);
+            Configurator.Map<KeyNotFoundConfig>(true);
         }
     }
 

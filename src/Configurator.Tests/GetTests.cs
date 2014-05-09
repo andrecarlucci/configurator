@@ -4,36 +4,26 @@ using Should;
 
 namespace Configurator.Tests
 {
-    [SetCulture("en-US")]
-    [SetUICulture("en-US")]
-    public class GetTests
+    public class GetTests : BaseTest
     {
-        private IConfigurator _configurator;
-
-        [SetUp]
-        public void Setup()
-        {
-            _configurator = new Configurator();
-        }
-
         [Test]
         [ExpectedException(typeof (ConfigurationKeyNotFoundException))]
         public void Should_Validate_Key()
         {
-            _configurator.Get<int>("test-int2");
+            Configurator.Get<int>("test-int2");
         }
 
         [Test]
         [ExpectedException(typeof (ConnectionStringNotFoundException))]
         public void Should_Validate_ConnectionString()
         {
-            _configurator.GetConnectionString("connection-nope");
+            Configurator.GetConnectionString("connection-nope");
         }
 
         [Test]
         public void Should_Get_ConnectionString()
         {
-            _configurator
+            Configurator
                 .GetConnectionString("connection")
                 .ShouldEqual("connection-string");
         }
@@ -41,7 +31,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Int()
         {
-            _configurator
+            Configurator
                 .Get<int>("test-int")
                 .ShouldEqual(5);
         }
@@ -49,7 +39,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_DateTime()
         {
-            _configurator
+            Configurator
                 .Get<DateTime>("test-datetime")
                 .ShouldEqual(new DateTime(2013, 1, 1));
         }
@@ -57,7 +47,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_String()
         {
-            _configurator
+            Configurator
                 .Get<string>("test-string")
                 .ShouldEqual("test");
         }
@@ -65,7 +55,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Decimal()
         {
-            _configurator
+            Configurator
                 .Get<decimal>("test-decimal")
                 .ShouldEqual(9.5m);
         }
@@ -73,7 +63,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Boolean()
         {
-            _configurator
+            Configurator
                 .Get<bool>("test-bool")
                 .ShouldEqual(true);
         }
@@ -81,7 +71,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Int_with_type()
         {
-            _configurator
+            Configurator
                 .Get(typeof (int), "test-int")
                 .ShouldEqual(5);
         }
@@ -89,7 +79,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_DateTime_with_type()
         {
-            _configurator
+            Configurator
                 .Get(typeof (DateTime), "test-datetime")
                 .ShouldEqual(new DateTime(2013, 1, 1));
         }
@@ -97,7 +87,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_String_with_type()
         {
-            _configurator
+            Configurator
                 .Get(typeof (string), "test-string")
                 .ShouldEqual("test");
         }
@@ -105,7 +95,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Decimal_with_type()
         {
-            _configurator
+            Configurator
                 .Get(typeof (decimal), "test-decimal")
                 .ShouldEqual(9.5m);
         }
@@ -113,7 +103,7 @@ namespace Configurator.Tests
         [Test]
         public void Should_Get_Boolean_with_type()
         {
-            _configurator
+            Configurator
                 .Get(typeof (bool), "test-bool")
                 .ShouldEqual(true);
         }
